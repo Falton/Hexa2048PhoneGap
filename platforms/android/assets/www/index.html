@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+		
+        <title>Hello World</title>
+    </head>
+    <body>
+	<script src="assets/javascript/phaser.min.js"></script>
+	<script src="assets/javascript/jquery-1.11.2.min.js"></script>
+	 <script src="assets/javascript/Model/Grid.js"></script>
+    <script src="assets/javascript/Model/Tile.js"></script>
+    <script src="assets/javascript/Managers/ScreenManager.js"></script>
+    <script src="assets/javascript/Screens/SplashScreen.js"></script>
+    <script src="assets/javascript/Screens/GameScreen.js"></script>
+    <script src="assets/javascript/Screens/GameOverPopup.js"></script>
+<script type="text/javascript">
+
+    
+    var screenManager;
+    var music;
+    window.onload = function() {
+
+        var game = new Phaser.Game(1024, 640, Phaser.AUTO, '', { preload: preload, create: create });
+
+        function preload () {
+			
+            game.load.image('backgroundgreen', 'assets/images/backgroundgreen.png');
+            game.load.image('TitleScreen_green', 'assets/images/TitleScreen_green.png');
+            game.load.image('PlayButton', 'assets/images/PlayButton.png');
+            game.load.image('OKButton', 'assets/images/OK.png');
+            game.load.image('RotateLeft', 'assets/images/RotateLeft.png');
+            game.load.image('tiles_edge01', 'assets/images/tiles_edge01.png');
+            game.load.image('tiles_edge02', 'assets/images/tiles_edge02.png');
+            game.load.image('tiles_edge03', 'assets/images/tiles_edge03.png');
+            game.load.image('tiles_edge04', 'assets/images/tiles_edge04.png');
+            game.load.image('tiles_unselected01', 'assets/images/tiles_unselected_01.png');
+            game.load.image('tiles_unselected02', 'assets/images/tiles_unselected_02.png');
+            game.load.image('tiles_unselected03', 'assets/images/tiles_unselected_03.png');
+            game.load.image('tiles_unselected04', 'assets/images/tiles_unselected_04.png');
+            game.load.image('tiles_unselected05', 'assets/images/tiles_unselected_05.png');
+            game.load.image('GameOverWindow', 'assets/images/GameOverWindow.png');
+            game.load.image('ReplayButtonNormal', 'assets/images/ReplayButtonNormal.png');
+            game.load.image('empty', 'assets/images/empty.png');
+            game.load.image('pixel', 'assets/images/pixel.png');
+            
+            game.load.audio('bgMusic','assets/sounds/BoxCat Games - Nameless- the Hackers RPG Soundtrack - 11 Assignment.mp3' );
+            game.load.audio('turnSound','assets/sounds/PulseSho-Mark_E_B-8071_hifi.mp3' );
+            
+
+        }
+
+        function create () {
+		
+		
+            var bg = game.add.sprite(0, 0, 'backgroundgreen');
+            
+            music = game.add.audio('bgMusic');
+            music.play();
+            
+            screenManager = new ScreenManager( game );
+            game.add.group(screenManager);
+            
+			//game.world.resize(window.outerWidth,window.outerHeight);
+			game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;  
+        }
+		
+
+    };
+
+    </script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
